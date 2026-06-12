@@ -2,7 +2,7 @@ import { AppButton, EmptyState, InlineBanner, Skeleton } from '@lovebook/ui';
 
 import { Break, ComponentRow, Section } from '../preview-canvas.tsx';
 
-// Spec: dockito/design-system/projects/lovefeed/preview/22-feed-states.html
+// Spec: dockito/design-system/projects/lovebook/preview/22-feed-states.html
 export function FeedStatesSection() {
   return (
     <Section

@@ -4,7 +4,7 @@ import { AppButton, ChromeField, LineField, TimeField } from '@lovebook/ui';
 
 import { Break, ComponentRow, Section } from '../preview-canvas.tsx';
 
-// Spec: dockito/design-system/projects/lovefeed/preview/11-inputs.html
+// Spec: dockito/design-system/projects/lovebook/preview/11-inputs.html
 export function FieldsSection() {
   const [note, setNote] = useState('The jollof place finally reopened.');
   const [from, setFrom] = useState('22:30');

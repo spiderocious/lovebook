@@ -1,13 +1,13 @@
-// Shared Tailwind theme for LoveFeed — "the shoebox".
+// Shared Tailwind theme for lovebook — "the shoebox".
 // Colours are CSS variables (defined in packages/ui/src/styles.css, with a
 // `.lamplight` dark override), so a single class works in both light and
 // Lamplight without per-component branching. Each app spreads this preset:
 //
-//   import { lovefeedPreset } from '@lovebook/ui/tailwind-preset';
-//   export default { presets: [lovefeedPreset], content: [...] } satisfies Config;
+//   import { lovebookPreset } from '@lovebook/ui/tailwind-preset';
+//   export default { presets: [lovebookPreset], content: [...] } satisfies Config;
 //
-// Source of truth: dockito/design-system/projects/lovefeed/preview/_foundation.css
-export const lovefeedPreset = {
+// Source of truth: dockito/design-system/projects/lovebook/preview/_foundation.css
+export const loveBookPreset = {
   theme: {
     extend: {
       colors: {

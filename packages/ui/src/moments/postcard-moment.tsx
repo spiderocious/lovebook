@@ -5,7 +5,7 @@ import { cn } from '../utils/cn.ts';
 /**
  * PostcardMoment — a text moment. Your handwriting, big, on a postcard.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/20-moments.html (.postcard)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/20-moments.html (.postcard)
  * Tokens:      _foundation.css (.keepsake, --serif, --plum)
  *
  * The serif is 20px because 200 characters deserve to be read, not skimmed. The
@@ -14,7 +14,8 @@ import { cn } from '../utils/cn.ts';
  * couldn't-load line with a quiet retry (no red — nothing here is critical).
  */
 export interface PostcardMomentProps {
-  text: ReactNode;
+  /** The moment's text. Optional only when `failed` (the failure copy shows instead). */
+  text?: ReactNode;
   timestamp?: ReactNode;
   reaction?: ReactNode;
   tilt?: 'right' | 'none';

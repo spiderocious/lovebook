@@ -5,7 +5,7 @@ import { cn } from '../utils/cn.ts';
 /**
  * PolaroidMoment — a photo moment. A tilted print, named in pencil.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/20-moments.html (.polaroid)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/20-moments.html (.polaroid)
  * Tokens:      _foundation.css (.keepsake, --shade-keepsake, --r-print)
  *
  * The author's name in pencil-italic, the reaction sitting where a thumb would

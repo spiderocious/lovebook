@@ -4,7 +4,7 @@ import { SettingRow, Switch } from '@lovebook/ui';
 
 import { Break, ComponentRow, Section } from '../preview-canvas.tsx';
 
-// Spec: dockito/design-system/projects/lovefeed/preview/12-reactions.html (switches)
+// Spec: dockito/design-system/projects/lovebook/preview/12-reactions.html (switches)
 export function SwitchSection() {
   const [notifications, setNotifications] = useState(true);
   const [quiet, setQuiet] = useState(true);

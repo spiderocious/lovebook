@@ -5,7 +5,7 @@ import { cn } from '../utils/cn.ts';
 /**
  * VoiceMoment — a voice moment. The only flat card, because sound has no surface.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/20-moments.html (.voicecard)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/20-moments.html (.voicecard)
  * Tokens:      _foundation.css (.sheet, --plum, --r-card)
  *
  * The waveform is real amplitude (a `number[]` of 0–1 the app supplies — the

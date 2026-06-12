@@ -6,7 +6,7 @@ import { cn } from '../utils/cn.ts';
 /**
  * ComposeBar — the segmented labelled pill. Three doors, pinned to the bottom.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/21-compose.html (.compose-bar)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/21-compose.html (.compose-bar)
  * Tokens:      _foundation.css (--r-bar, --shade-float, --plum-wash)
  *
  * Photo, Voice, Note. The labels stay — a first-time parent should never have to

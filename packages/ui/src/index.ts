@@ -1,5 +1,5 @@
-// @lovebook/ui — LoveFeed "the shoebox" component library.
-// Visual spec: dockito/design-system/projects/lovefeed/preview/
+// @lovebook/ui — lovebook "the shoebox" component library.
+// Visual spec: dockito/design-system/projects/lovebook/preview/
 // Tokens:      ./styles.css (:root + .lamplight) · ./theme
 
 // Theme
@@ -54,6 +54,35 @@ export type { SkeletonProps, EmptyStateProps, InlineBannerProps } from './state/
 // Compose — the three doors
 export { ComposeBar, VoiceRecorder } from './compose/index.ts';
 export type { ComposeBarProps, ComposeDoor, VoiceRecorderProps } from './compose/index.ts';
+
+// Overlays — feedback primitives + the imperative DrawerService layer
+export {
+  Toast,
+  Banner,
+  Modal,
+  CriticalModal,
+  CustomModal,
+  DrawerService,
+  ToastHost,
+  BannerHost,
+  ModalHost,
+} from './overlays/index.ts';
+export type {
+  ToastProps,
+  BannerProps,
+  FeedbackTone,
+  ModalProps,
+  CriticalModalProps,
+  CustomModalProps,
+  ModalPosition,
+  ToastOptions,
+  BannerOptions,
+  ConfirmOptions,
+  CriticalOptions,
+  CustomModalOptions,
+  ToastPosition,
+  BannerPosition,
+} from './overlays/index.ts';
 
 // Icons are NOT re-exported here. Import them via the dedicated proxy:
 //   import { IconHome } from '@icons';

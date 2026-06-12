@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * ReactionButton — one reaction per moment. A note on the back of a print.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/12-reactions.html (.react)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/12-reactions.html (.react)
  *              and 20-moments.html (in situ on a moment)
  * Tokens:      _foundation.css (.react, :324-334)
  *

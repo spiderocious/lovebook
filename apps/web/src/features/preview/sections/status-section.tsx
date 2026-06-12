@@ -2,7 +2,7 @@ import { StatusPill, Timestamp } from '@lovebook/ui';
 
 import { Break, ComponentRow, Section } from '../preview-canvas.tsx';
 
-// Spec: dockito/design-system/projects/lovefeed/preview/23-avatars-stamps.html
+// Spec: dockito/design-system/projects/lovebook/preview/23-avatars-stamps.html
 const HOUR = 3_600_000;
 const DAY = 86_400_000;
 const NOW = new Date('2026-06-12T21:47:00');

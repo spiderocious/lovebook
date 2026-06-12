@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Repeat } from 'meemaw';
 
 import { PreviewNav } from './preview-canvas.tsx';
-import { PREVIEW_SECTIONS } from './preview-sections.tsx';
+import { PREVIEW_SECTIONS, type PreviewSection } from './preview-sections.tsx';
 
 // The @lovebook/ui viewer. A standalone route that renders every component in
 // its real situations. The designer reviews here. The Lamplight toggle sets
@@ -23,7 +23,7 @@ export function PreviewScreen() {
       <div className="mx-auto flex max-w-[1240px] gap-10 px-8 py-12">
         <aside className="sticky top-12 hidden h-[calc(100vh-6rem)] w-56 shrink-0 overflow-y-auto lg:block">
           <div className="mb-8">
-            <div className="font-display text-[22px] font-medium tracking-display">LoveFeed</div>
+            <div className="font-display text-[22px] font-medium tracking-display">lovebook</div>
             <div className="mt-1 font-mono text-[10px] text-ink-3">the shoebox · @lovebook/ui</div>
           </div>
           <button
@@ -37,7 +37,9 @@ export function PreviewScreen() {
         </aside>
 
         <main className="min-w-0 flex-1">
-          <Repeat each={PREVIEW_SECTIONS}>{(section) => <div key={section.id}>{section.render()}</div>}</Repeat>
+          <Repeat<PreviewSection> each={[...PREVIEW_SECTIONS]}>
+            {(section) => <div key={section.id}>{section.render()}</div>}
+          </Repeat>
         </main>
       </div>
     </div>

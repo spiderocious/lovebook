@@ -5,7 +5,7 @@ import { cn } from '../utils/cn.ts';
 /**
  * InlineBanner — the in-feed amber strip (offline, code-expiring).
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/22-feed-states.html (offline strip)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/22-feed-states.html (offline strip)
  *              and 41-feedback.html (.banner.wait)
  * Tokens:      _foundation.css (--wait, --wait-bg, --wait-edge)
  *

@@ -5,8 +5,8 @@ import { cn } from '../../utils/cn.ts';
 /**
  * AppButton — the locked pill family.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/10-buttons.html
- * Tokens:      dockito/design-system/projects/lovefeed/preview/_foundation.css (.b, :207-260)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/10-buttons.html
+ * Tokens:      dockito/design-system/projects/lovebook/preview/_foundation.css (.b, :207-260)
  *
  * Four weights. `primary` is filled plum for the one thing the screen wants;
  * `secondary` is a plum wash for the alternative; `quiet` is "not now"; `danger`

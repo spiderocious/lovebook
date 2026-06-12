@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * Feedback primitives — Toast and Banner.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/41-feedback.html
+ * Visual spec: dockito/design-system/projects/lovebook/preview/41-feedback.html
  * Tokens:      _foundation.css (.toast, .banner, --ink, --wait)
  *
  * Toast is the only inverted (ink-filled) element in the product, so it is

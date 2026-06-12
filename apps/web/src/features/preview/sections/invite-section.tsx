@@ -4,7 +4,7 @@ import { InviteCodeDisplay, InviteCodeEntry } from '@lovebook/ui';
 
 import { Break, ComponentRow, Section } from '../preview-canvas.tsx';
 
-// Spec: dockito/design-system/projects/lovefeed/preview/11-inputs.html (the invite code, both sides)
+// Spec: dockito/design-system/projects/lovebook/preview/11-inputs.html (the invite code, both sides)
 export function InviteSection() {
   const [code, setCode] = useState('QF7K2');
   const [done, setDone] = useState(false);
@@ -19,7 +19,7 @@ export function InviteSection() {
       <ComponentRow caption="Mono, huge, unmistakable. Copy uses meemaw's CopyToClipboard for the confirmation state.">
         <InviteCodeDisplay
           code="QF7-K2M"
-          copyText="https://lovefeed.app/join/QF7-K2M"
+          copyText="https://lovebook.app/join/QF7-K2M"
           expiryLabel="expires in 23 h 41 m"
         />
       </ComponentRow>

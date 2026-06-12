@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * LineField — the locked composer. A bare serif line on the paper.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/11-inputs.html (.f-line)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/11-inputs.html (.f-line)
  * Tokens:      _foundation.css (.f-line, :262-276)
  *
  * The field is invisible until you write: no box, just an underline that turns

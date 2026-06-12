@@ -9,7 +9,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * Modal primitives — the two heavy doors and the light sheets.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/40-modals.html
+ * Visual spec: dockito/design-system/projects/lovebook/preview/40-modals.html
  * Tokens:      _foundation.css (.modal, .crit-rule, .backdrop)
  *
  * The product interrupts for almost nothing. Each speaks in the serif, because

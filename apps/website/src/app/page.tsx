@@ -7,11 +7,11 @@ export default function HomePage() {
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-20">
-      <AppText variant="caption">marketing site</AppText>
-      <AppText variant="display-1" className="mt-2 text-brand-900">
+      <AppText variant="overline">marketing site</AppText>
+      <AppText variant="display" className="mt-2 text-ink">
         Your product headline goes here.
       </AppText>
-      <AppText variant="body" className="mt-6 max-w-2xl text-ink-700">
+      <AppText variant="body" className="mt-6 max-w-2xl">
         This is the Next.js marketing site in the monorepo template. It shares the
         same UI primitives as the app. Replace this copy, the cards below and the
         metadata in layout.tsx with your own.
@@ -20,13 +20,13 @@ export default function HomePage() {
       <div className="mt-10 flex flex-wrap gap-3">
         <Link
           href={appUrl}
-          className="inline-flex items-center justify-center rounded-md bg-brand-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-700"
+          className="inline-flex items-center justify-center rounded-pill bg-plum px-5 py-2.5 text-sm font-medium text-print hover:bg-plum-deep"
         >
           Open the app
         </Link>
         <Link
           href="/pricing"
-          className="inline-flex items-center justify-center rounded-md border border-brand-900/20 px-5 py-2.5 text-sm font-medium text-brand-900 hover:bg-brand-900/5"
+          className="inline-flex items-center justify-center rounded-pill border border-hair-strong px-5 py-2.5 text-sm font-medium text-plum hover:bg-plum-wash"
         >
           Pricing
         </Link>
@@ -44,11 +44,11 @@ export default function HomePage() {
 
 function Card({ title, body }: { title: string; body: string }) {
   return (
-    <div className="rounded-lg border border-brand-900/10 bg-white p-5 shadow-sm">
-      <AppText variant="heading-3" className="text-brand-900">
+    <div className="rounded-card border border-print-edge bg-print p-5">
+      <AppText variant="heading" className="text-ink">
         {title}
       </AppText>
-      <AppText variant="body-sm" className="mt-2 text-ink-700">
+      <AppText variant="body-sm" className="mt-2">
         {body}
       </AppText>
     </div>

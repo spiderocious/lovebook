@@ -4,7 +4,7 @@ import { ReactionButton, ReactionPicker } from '@lovebook/ui';
 
 import { Break, ComponentRow, Section } from '../preview-canvas.tsx';
 
-// Spec: dockito/design-system/projects/lovefeed/preview/12-reactions.html + 20-moments.html
+// Spec: dockito/design-system/projects/lovebook/preview/12-reactions.html + 20-moments.html
 export function ReactionsSection() {
   const [picked, setPicked] = useState<string | undefined>('❤️');
 
