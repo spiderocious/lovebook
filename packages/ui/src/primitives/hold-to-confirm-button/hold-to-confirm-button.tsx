@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * HoldToConfirmButton — the crimson door.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/10-buttons.html (.hold)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/10-buttons.html (.hold)
  *              and 40-modals.html (the leave-pair foot)
  * Tokens:      _foundation.css — --crit / --crit-bg
  *

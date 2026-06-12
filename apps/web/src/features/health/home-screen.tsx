@@ -9,30 +9,31 @@ export function HomeScreen() {
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
-      <AppText variant="caption">web app</AppText>
-      <AppText variant="display-1" className="mt-2 text-brand-900">
-        Monorepo template
+      <AppText variant="overline">lovebook</AppText>
+      <AppText variant="display" className="mt-2 text-ink">
+        One feed, two people.
       </AppText>
-      <AppText variant="body" className="mt-4 max-w-2xl text-ink-700">
-        A starting point: Nx + pnpm workspace with shared <code>core</code>,{' '}
-        <code>api</code> and <code>ui</code> packages, an Express backend and three
-        frontends. Replace this copy and build your product.
+      <AppText variant="body" className="mt-4 max-w-2xl">
+        Post a moment, your person sees it. No replies, no metrics, just presence. The{' '}
+        <code>@lovebook/ui</code> component library lives behind the design-system preview.
       </AppText>
 
       <div className="mt-8 flex gap-3">
-        <Link to={ROUTES.EXAMPLE}>
-          <AppButton>Open example</AppButton>
+        <Link to={ROUTES.PREVIEW}>
+          <AppButton>Open the design system</AppButton>
         </Link>
-        <AppButton variant="secondary" type="button">
-          Sign in
-        </AppButton>
+        <Link to={ROUTES.EXAMPLE}>
+          <AppButton variant="secondary" type="button">
+            Example screen
+          </AppButton>
+        </Link>
       </div>
 
-      <section className="mt-12 rounded-lg border border-brand-900/10 bg-white/60 p-4 text-sm">
-        <AppText variant="caption">backend health</AppText>
+      <section className="mt-12 rounded-card border border-print-edge bg-print p-4 text-sm">
+        <AppText variant="overline">backend health</AppText>
         <div className="mt-2">
           {isLoading && 'Checking…'}
-          {isError && <span className="text-accent-600">unreachable — is main-backend running?</span>}
+          {isError && <span className="text-wait">unreachable — is main-backend running?</span>}
           {data && (
             <span>
               status: <strong>{data.status}</strong>

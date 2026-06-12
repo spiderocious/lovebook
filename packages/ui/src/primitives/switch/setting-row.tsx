@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * SettingRow — the labelled row a Switch lives in.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/12-reactions.html (.switchrow)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/12-reactions.html (.switchrow)
  *
  * A title + a one-line description on the left, the control on the right,
  * separated by a hairline. The sentence does the explaining so the control

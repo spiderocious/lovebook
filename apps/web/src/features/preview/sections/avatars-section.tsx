@@ -2,7 +2,7 @@ import { Avatar, PairMark } from '@lovebook/ui';
 
 import { Break, ComponentRow, Section, Swatch } from '../preview-canvas.tsx';
 
-// Spec: dockito/design-system/projects/lovefeed/preview/23-avatars-stamps.html
+// Spec: dockito/design-system/projects/lovebook/preview/23-avatars-stamps.html
 export function AvatarsSection() {
   return (
     <Section

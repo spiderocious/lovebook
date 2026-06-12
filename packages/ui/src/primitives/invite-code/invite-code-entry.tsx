@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * InviteCodeEntry — the one boxed input in the product.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/11-inputs.html (.codeboxes)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/11-inputs.html (.codeboxes)
  * Tokens:      _foundation.css — --mono, --plum, --hair-strong
  *
  * Six cells on the receiver's side, because each character is an object you were

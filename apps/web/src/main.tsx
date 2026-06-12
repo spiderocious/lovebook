@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 import { configureApiClient } from '@lovebook/api';
 
-// LoveFeed fonts — self-hosted via @fontsource. The serif is the human voice,
+// lovebook fonts — self-hosted via @fontsource. The serif is the human voice,
 // Inter is chrome, JetBrains Mono is the record, Fraunces is ceremony.
 import '@fontsource/source-serif-4/400.css';
 import '@fontsource/source-serif-4/500.css';

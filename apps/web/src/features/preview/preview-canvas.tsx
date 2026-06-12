@@ -6,7 +6,7 @@ import { Repeat } from 'meemaw';
 // Mirrors the Studio specimen layout (a "stamp" header, "break" section rules,
 // captioned rows) so reviewing here feels like reviewing the HTML spec.
 //
-// Source spec: dockito/design-system/projects/lovefeed/preview/
+// Source spec: dockito/design-system/projects/lovebook/preview/
 
 export function Section({
   num,
@@ -92,13 +92,13 @@ export function PreviewNav({ items }: { items: ReadonlyArray<PreviewNavItem> }) 
 
   return (
     <nav className="flex flex-col gap-6">
-      <Repeat each={groupOrder}>
+      <Repeat<string> each={groupOrder}>
         {(group) => (
           <div key={group}>
             <div className="mb-2 font-sans text-[10px] font-semibold uppercase tracking-overline text-ink-4">
               {group}
             </div>
-            <Repeat each={items.filter((i) => i.group === group)}>
+            <Repeat<PreviewNavItem> each={items.filter((i) => i.group === group)}>
               {(item) => (
                 <a
                   key={item.id}

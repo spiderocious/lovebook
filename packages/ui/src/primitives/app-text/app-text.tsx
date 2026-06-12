@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * AppText — the typographic voice of the shoebox.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/02-type.html
+ * Visual spec: dockito/design-system/projects/lovebook/preview/02-type.html
  * Tokens:      _foundation.css (.voice, .stampnote, .rec, .overline)
  *
  * The system's one hard rule lives here: **the serif belongs to humans.** The

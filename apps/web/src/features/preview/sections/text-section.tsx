@@ -2,7 +2,7 @@ import { AppText } from '@lovebook/ui';
 
 import { Break, ComponentRow, Section } from '../preview-canvas.tsx';
 
-// Spec: dockito/design-system/projects/lovefeed/preview/02-type.html
+// Spec: dockito/design-system/projects/lovebook/preview/02-type.html
 export function TextSection() {
   return (
     <Section

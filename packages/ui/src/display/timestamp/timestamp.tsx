@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * Timestamp — human first, exact on request.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/23-avatars-stamps.html (timestamps)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/23-avatars-stamps.html (timestamps)
  * Tokens:      _foundation.css (.stampnote, .rec)
  *
  * Written the way you'd say it across a kitchen table ("just now", "2h ago",

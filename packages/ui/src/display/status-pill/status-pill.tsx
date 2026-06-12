@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * StatusPill — the quiet status mark. One of five, ever.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/23-avatars-stamps.html (.pill)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/23-avatars-stamps.html (.pill)
  * Tokens:      _foundation.css (.pill, :310-322)
  *
  * `ok` (moss) for connected/delivered/paired; `wait` (amber) for queued/offline/

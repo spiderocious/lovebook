@@ -3,7 +3,7 @@ import { cn } from '../utils/cn.ts';
 /**
  * Skeleton — loading shapes that mirror the real moments.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/22-feed-states.html (.skel)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/22-feed-states.html (.skel)
  * Tokens:      _foundation.css (--paper-deep, --r-print) + the `breathe` keyframe
  *
  * They breathe slowly; nothing spins. `kind="polaroid"` is a frame + a pencil

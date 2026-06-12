@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * InviteCodeDisplay — the inviter's side. The code is display, not input.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/11-inputs.html (Your invite)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/11-inputs.html (Your invite)
  * Tokens:      _foundation.css — --mono, --plum
  *
  * Mono, huge, unmistakable over a shoulder or in a screenshot. The copy action

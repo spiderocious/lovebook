@@ -5,7 +5,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * ChromeField — the quiet, last-in-line field. Auth and profile.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/11-inputs.html (.f)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/11-inputs.html (.f)
  * Tokens:      _foundation.css (.f, :278-293)
  *
  * Same bare-line idiom as the composer, but smaller and in sans — these are the

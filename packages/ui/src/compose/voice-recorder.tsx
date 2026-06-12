@@ -5,7 +5,7 @@ import { cn } from '../utils/cn.ts';
 /**
  * VoiceRecorder — hold to record, release to preview.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/21-compose.html (.recorder)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/21-compose.html (.recorder)
  * Tokens:      _foundation.css (--plum, --plum-wash, --mono)
  *
  * The WhatsApp muscle memory, kept. The ring around the mic is the only fanfare.

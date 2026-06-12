@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * Switch — the product's only selection control.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/12-reactions.html (.sw)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/12-reactions.html (.sw)
  * Tokens:      _foundation.css — --plum, --hair-strong, --print
  *
  * No checkboxes, no radio groups, no dropdowns anywhere in v1 — the product has

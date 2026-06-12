@@ -5,14 +5,14 @@ import { cn } from '../../utils/cn.ts';
 /**
  * TimeField — a time as a mono pill. The record idiom.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/11-inputs.html (.timefield)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/11-inputs.html (.timefield)
  * Tokens:      _foundation.css — --mono, --r-pill
  *
  * Quiet hours and any HH:MM value. The control stays wordless — a mono pill, no
  * label inside it. Renders a native `type="time"` input styled as the pill so it
  * is genuinely editable, not a display of a value.
  */
-export interface TimeFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {}
+export type TimeFieldProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>;
 
 export const TimeField = forwardRef<HTMLInputElement, TimeFieldProps>(function TimeField(
   { className, ...rest },

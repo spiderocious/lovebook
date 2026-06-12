@@ -5,7 +5,7 @@ import { cn } from '../utils/cn.ts';
 /**
  * EmptyState — the kind, serif-voiced non-error states.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/22-feed-states.html
+ * Visual spec: dockito/design-system/projects/lovebook/preview/22-feed-states.html
  * Tokens:      _foundation.css (.voice, .stampnote)
  *
  * A two-person feed has states a public feed never has: "nothing yet, and that's

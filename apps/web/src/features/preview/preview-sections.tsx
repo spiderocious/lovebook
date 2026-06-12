@@ -23,6 +23,7 @@ import { StatusSection } from './sections/status-section.tsx';
 import { MomentsSection } from './sections/moments-section.tsx';
 import { FeedStatesSection } from './sections/feed-states-section.tsx';
 import { ComposeSection } from './sections/compose-section.tsx';
+import { OverlaysSection } from './sections/overlays-section.tsx';
 
 export const PREVIEW_SECTIONS: ReadonlyArray<PreviewSection> = [
   { id: '10', label: 'Buttons', group: 'Primitives', render: () => <ButtonsSection /> },
@@ -36,4 +37,5 @@ export const PREVIEW_SECTIONS: ReadonlyArray<PreviewSection> = [
   { id: '20', label: 'Moments', group: 'Domain', render: () => <MomentsSection /> },
   { id: '22', label: 'Feed states', group: 'Domain', render: () => <FeedStatesSection /> },
   { id: '21', label: 'Compose', group: 'Domain', render: () => <ComposeSection /> },
+  { id: '40', label: 'Overlays', group: 'Feedback', render: () => <OverlaysSection /> },
 ];

@@ -1,11 +1,11 @@
 // Design tokens — the TS mirror of packages/ui/src/styles.css.
-// Source of truth: dockito/design-system/projects/lovefeed/preview/_foundation.css
+// Source of truth: dockito/design-system/projects/lovebook/preview/_foundation.css
 //
 // Colours are also exposed as CSS variables in styles.css and read by name
 // from each app's tailwind.config.ts. This object exists for the rare consumer
 // that needs a token value in JS (e.g. an inline gradient, a canvas waveform).
 //
-// LoveFeed — "the shoebox": ivory paper, plum-warm ink, dusty plum as the one
+// lovebook — "the shoebox": ivory paper, plum-warm ink, dusty plum as the one
 // accent. Cold crimson guards only the two irreversible doors.
 
 export const COLORS = {

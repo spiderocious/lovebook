@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * ReactionPicker — the floating pill of six. Long-press on a moment.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/12-reactions.html (.picker)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/12-reactions.html (.picker)
  * Tokens:      _foundation.css (.picker, --r-bar, --shade-float)
  *
  * Six choices, fixed — the constraint is the charm. Controlled: the parent

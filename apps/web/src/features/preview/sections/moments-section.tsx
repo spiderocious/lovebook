@@ -2,7 +2,7 @@ import { AppButton, PolaroidMoment, PostcardMoment, ReactionButton, VoiceMoment 
 
 import { Break, ComponentRow, Section } from '../preview-canvas.tsx';
 
-// Spec: dockito/design-system/projects/lovefeed/preview/20-moments.html
+// Spec: dockito/design-system/projects/lovebook/preview/20-moments.html
 const SKY = 'linear-gradient(180deg, #C9A5B4 0%, #E2B59B 38%, #E8C9A1 58%, #8F8AA8 100%)';
 const MARKET = 'linear-gradient(160deg, #B7793F 0%, #D9A45C 45%, #8C5B33 100%)';
 const DOG = 'linear-gradient(145deg, #C8A87E 0%, #9C7B52 60%, #6E5436 100%)';

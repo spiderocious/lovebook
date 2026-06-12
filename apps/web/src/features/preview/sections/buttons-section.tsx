@@ -2,7 +2,7 @@ import { AppButton, HoldToConfirmButton } from '@lovebook/ui';
 
 import { Break, ComponentRow, Section } from '../preview-canvas.tsx';
 
-// Spec: dockito/design-system/projects/lovefeed/preview/10-buttons.html
+// Spec: dockito/design-system/projects/lovebook/preview/10-buttons.html
 export function ButtonsSection() {
   return (
     <Section

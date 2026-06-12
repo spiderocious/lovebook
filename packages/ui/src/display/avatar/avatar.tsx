@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn.ts';
 /**
  * Avatar — there are only ever two people.
  *
- * Visual spec: dockito/design-system/projects/lovefeed/preview/23-avatars-stamps.html (.av)
+ * Visual spec: dockito/design-system/projects/lovebook/preview/23-avatars-stamps.html (.av)
  * Tokens:      _foundation.css (.av, :295-308)
  *
  * `who="you"` is filled plum; `who="them"` is a plum wash — tellable apart at
