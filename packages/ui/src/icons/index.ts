@@ -13,4 +13,7 @@ export {
   Activity as IconActivity,
   Map as IconMap,
   BarChart3 as IconChart,
+  Camera as IconCamera,
+  Mic as IconMic,
+  Pencil as IconPencil,
 } from 'lucide-react';
