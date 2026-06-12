@@ -1,15 +1,23 @@
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useState } from "react";
 
-import { AppButton, ComposeBar, type ComposeDoor, LineField, VoiceRecorder } from '@lovebook/ui';
+import {
+  AppButton,
+  ComposeBar,
+  type ComposeDoor,
+  LineField,
+  VoiceRecorder,
+} from "@lovebook/ui";
 
-import { Break, ComponentRow, Section } from '../preview-canvas.tsx';
+import { Break, ComponentRow, Section } from "../preview-canvas.tsx";
 
 // Spec: dockito/design-system/projects/lovebook/preview/21-compose.html
-const LIVE_WAVE = [0.35, 0.6, 0.8, 0.45, 0.9, 0.55, 0.7, 0.4, 0.85, 0.5, 0.65, 0.38];
+const LIVE_WAVE = [
+  0.35, 0.6, 0.8, 0.45, 0.9, 0.55, 0.7, 0.4, 0.85, 0.5, 0.65, 0.38,
+];
 
 export function ComposeSection() {
-  const [active, setActive] = useState<ComposeDoor>('photo');
-  const [note, setNote] = useState('Sky was unreasonable this evening.');
+  const [active, setActive] = useState<ComposeDoor>("photo");
+  const [note, setNote] = useState("Sky was unreasonable this evening.");
 
   return (
     <Section
@@ -30,7 +38,10 @@ export function ComposeSection() {
         >
           <div
             className="aspect-[3/4] overflow-hidden rounded-[10px]"
-            style={{ background: 'linear-gradient(180deg, #C9A5B4 0%, #E2B59B 38%, #E8C9A1 58%, #8F8AA8 100%)' }}
+            style={{
+              background:
+                "linear-gradient(180deg, #C9A5B4 0%, #E2B59B 38%, #E8C9A1 58%, #8F8AA8 100%)",
+            }}
           />
           <div className="mt-4 flex justify-between">
             <AppButton variant="quiet" size="sm">
@@ -83,7 +94,9 @@ function Flow({
         {overline}
       </div>
       {children}
-      <p className="mt-auto pt-4 text-[12px] leading-relaxed text-ink-3">{caption}</p>
+      <p className="mt-auto pt-4 text-[12px] leading-relaxed text-ink-3">
+        {caption}
+      </p>
     </div>
   );
 }
