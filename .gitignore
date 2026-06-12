@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+build
+out
+.next
+.turbo
+
+# Nx
+.nx/cache
+.nx/workspace-data
+
+# Env (commit .env.example, never .env)
+.env
+.env.local
+.env.*.local
+
+# Editor / OS
+.DS_Store
+*.log
+.idea
+.vscode/*
+!.vscode/extensions.json

@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* The room. Tokens come from @lovebook/ui/styles.css (imported in main.tsx);
+   Lamplight is `.lamplight` on <html>. */
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
