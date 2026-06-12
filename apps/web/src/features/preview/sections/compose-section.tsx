@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type ReactNode, useState } from 'react';
 
 import { AppButton, ComposeBar, type ComposeDoor, LineField, VoiceRecorder } from '@lovebook/ui';
 
@@ -23,11 +23,11 @@ export function ComposeSection() {
       </ComponentRow>
 
       <Break label="THE THREE FLOWS" />
-      <ComponentRow align="start">
-        <div className="w-full max-w-[260px] rounded-card border border-print-edge bg-print p-6">
-          <div className="mb-4 font-sans text-[11px] font-semibold uppercase tracking-overline text-ink-3">
-            Photo · preview
-          </div>
+      <div className="grid grid-cols-1 items-start gap-5 sm:grid-cols-3">
+        <Flow
+          overline="Photo · preview"
+          caption="Camera opens straight from the bar; this is the only screen between shutter and feed. No filters, no crop, no caption field — the photo is the post."
+        >
           <div
             className="aspect-[3/4] overflow-hidden rounded-[10px]"
             style={{ background: 'linear-gradient(180deg, #C9A5B4 0%, #E2B59B 38%, #E8C9A1 58%, #8F8AA8 100%)' }}
@@ -40,22 +40,50 @@ export function ComposeSection() {
               Send to Ada
             </AppButton>
           </div>
-        </div>
+        </Flow>
 
-        <div className="w-full max-w-[260px] rounded-card border border-print-edge bg-print p-6">
-          <div className="mb-4 font-sans text-[11px] font-semibold uppercase tracking-overline text-ink-3">
-            Voice · holding to record
-          </div>
+        <Flow
+          overline="Voice · holding to record"
+          caption="Hold to record, release to preview — the WhatsApp muscle memory, kept. At 0:30 recording simply stops; the ring around the mic is the only fanfare."
+        >
           <VoiceRecorder seconds={11} waveform={LIVE_WAVE} recording />
-        </div>
+        </Flow>
 
-        <div className="w-full max-w-[260px] rounded-card border border-print-edge bg-print p-6">
-          <div className="mb-4 font-sans text-[11px] font-semibold uppercase tracking-overline text-ink-3">
-            Note · writing
+        <Flow
+          overline="Note · writing"
+          caption="The note slides up over the feed as a half-sheet; the feed stays visible behind it. It grows as you type. Want to say more? Send another."
+        >
+          <div className="pt-3">
+            <LineField
+              value={note}
+              onValueChange={setNote}
+              maxLength={200}
+              showCounter
+              aria-label="Note"
+            />
           </div>
-          <LineField value={note} onValueChange={setNote} maxLength={200} showCounter aria-label="Note" />
-        </div>
-      </ComponentRow>
+        </Flow>
+      </div>
     </Section>
+  );
+}
+
+function Flow({
+  overline,
+  caption,
+  children,
+}: {
+  overline: string;
+  caption: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="flex h-full flex-col rounded-card border border-print-edge bg-print p-[26px]">
+      <div className="mb-4 font-sans text-[11px] font-semibold uppercase tracking-overline text-ink-3">
+        {overline}
+      </div>
+      {children}
+      <p className="mt-auto pt-4 text-[12px] leading-relaxed text-ink-3">{caption}</p>
+    </div>
   );
 }

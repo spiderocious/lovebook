@@ -31,7 +31,7 @@ export function ComposeBar({ active, onCompose, className }: ComposeBarProps) {
   return (
     <div
       className={cn(
-        'flex max-w-[360px] items-stretch overflow-hidden rounded-bar border border-hair bg-print shadow-float',
+        'flex w-[340px] max-w-full items-stretch overflow-hidden rounded-bar border border-hair bg-print shadow-float',
         className,
       )}
     >
@@ -41,8 +41,8 @@ export function ComposeBar({ active, onCompose, className }: ComposeBarProps) {
           type="button"
           onClick={() => onCompose(door.key)}
           className={cn(
-            'flex flex-1 items-center justify-center gap-2 py-3.5 font-sans text-[12px] font-semibold transition-colors',
-            i > 0 && 'border-l border-hair',
+            'relative flex flex-1 items-center justify-center gap-2 px-2 py-3.5 font-sans text-[12px] font-semibold transition-colors',
+            i > 0 && 'before:absolute before:inset-y-0 before:left-0 before:w-px before:bg-hair',
             active === door.key ? 'bg-plum-wash text-plum' : 'text-ink-2 hover:bg-plum-wash hover:text-plum',
           )}
         >
