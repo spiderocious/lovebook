@@ -1,9 +1,8 @@
 // Centralised route table. Apps import from here so route strings have
-// exactly one source of truth across web + admin + website surfaces.
+// exactly one source of truth across web + admin surfaces.
 export const ROUTES = {
-  // Public marketing
+  // Public
   HOME: '/',
-  PRICING: '/pricing',
   ABOUT: '/about',
 
   // Auth
@@ -11,10 +10,14 @@ export const ROUTES = {
   REGISTER: '/register',
   FORGOT_PASSWORD: '/forgot-password',
 
+  // Pairing
+  PAIR: '/pair',
+  PAIR_INVITE: (ref: string) => `/pair/${ref}`,
+
   // App
-  DASHBOARD: '/dashboard',
-  EXAMPLE: '/example',
-  EXAMPLE_ITEM: (id: string) => `/example/${id}`,
+  FEED: '/feed',
+  SETTINGS: '/settings',
+  PAST_PAIRS: '/settings/past-pairs',
 
   // Design-system preview (the @lovebook/ui viewer)
   PREVIEW: '/preview',

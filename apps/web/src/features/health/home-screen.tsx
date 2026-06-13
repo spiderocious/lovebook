@@ -22,11 +22,6 @@ export function HomeScreen() {
         <Link to={ROUTES.PREVIEW}>
           <AppButton>Open the design system</AppButton>
         </Link>
-        <Link to={ROUTES.EXAMPLE}>
-          <AppButton variant="secondary" type="button">
-            Example screen
-          </AppButton>
-        </Link>
       </div>
 
       <section className="mt-12 rounded-card border border-print-edge bg-print p-4 text-sm">

@@ -23,5 +23,6 @@
       "@icons": ["../../packages/ui/src/icons/index.ts"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/pwa/sw.ts"]
 }

@@ -9,6 +9,7 @@ export interface RequestCtx {
   startedAt: number;
   userId?: string;
   role?: string;
+  pairId?: string;
 }
 
 const storage = new AsyncLocalStorage<RequestCtx>();
