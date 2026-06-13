@@ -98,10 +98,47 @@ function Wordmark() {
 /* ─────────────────────────── Hero ─────────────────────────── */
 
 function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+  const liquidRef = useRef<HTMLDivElement>(null);
+
+  // Mouse reactivity: write the normalized pointer position into CSS vars on the
+  // liquid layer (via a ref, no re-renders). The wave layers read them to drift
+  // toward the cursor — the sea "leans" where you move. rAF-throttled.
+  useEffect(() => {
+    const hero = heroRef.current;
+    const liquid = liquidRef.current;
+    if (!hero || !liquid) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let frame = 0;
+    let px = 0.5;
+    let py = 0.5;
+    const onMove = (e: PointerEvent) => {
+      const r = hero.getBoundingClientRect();
+      px = (e.clientX - r.left) / r.width;
+      py = (e.clientY - r.top) / r.height;
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        liquid.style.setProperty('--mx', px.toFixed(3));
+        liquid.style.setProperty('--my', py.toFixed(3));
+      });
+    };
+    hero.addEventListener('pointermove', onMove);
+    return () => {
+      hero.removeEventListener('pointermove', onMove);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
-    <section className="mx-auto flex min-h-[88svh] w-full max-w-4xl flex-col items-center justify-center px-6 pb-10 pt-16 text-center sm:px-8">
+    <section
+      ref={heroRef}
+      className="relative mx-auto flex min-h-[88svh] w-full max-w-4xl flex-col items-center justify-center overflow-hidden px-6 pb-10 pt-16 text-center sm:px-8"
+    >
+      <LiquidWaves ref={liquidRef} />
       <PairMark />
-      <div data-hero className="mt-10 flex flex-col items-center">
+      <div data-hero className="relative z-10 mt-10 flex flex-col items-center">
         <h1 className="max-w-3xl font-display text-[clamp(40px,7vw,80px)] font-medium leading-[1.04] tracking-[-0.02em] text-ink">
           One feed.
           <br />
@@ -133,10 +170,34 @@ function Hero() {
   );
 }
 
-/** Two avatars with a self-drawing connector — the whole product in one mark. */
+// Diverse couple pairs — any two people. Mixed across skin tone and gender so
+// the mark says "whoever your person is." Rotates on a gentle interval.
+const COUPLES: ReadonlyArray<readonly [string, string]> = [
+  ['👩🏼', '👨🏿'], // white woman + black guy
+  ['👩🏿', '👨🏼'], // black woman + white guy
+  ['👩🏽', '👩🏻'], // two women
+  ['👨🏾', '👨🏼'], // two men
+  ['👩🏻', '👨🏽'], // light woman + brown guy
+  ['🧑🏿', '🧑🏻'], // two people, dark + light
+  ['👵🏼', '👴🏾'], // older couple (a parent + their person)
+  ['👩🏾', '👨🏻'], // brown woman + light guy
+];
+
+/** Two avatars with a self-drawing connector — the whole product in one mark.
+ *  The faces cycle through diverse couples so it reads as "any two people." */
 function PairMark() {
+  const [i, setI] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const id = setInterval(() => setI((n) => (n + 1) % COUPLES.length), 2600);
+    return () => clearInterval(id);
+  }, []);
+
+  const couple = COUPLES[i] ?? COUPLES[0]!;
+
   return (
-    <div className="relative flex items-center justify-center" aria-hidden>
+    <div className="relative z-10 flex items-center justify-center" aria-hidden>
       <svg
         viewBox="0 0 200 60"
         className="absolute inset-0 h-full w-full"
@@ -153,19 +214,23 @@ function PairMark() {
         />
       </svg>
       <div
-        className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-plum font-display text-[26px] text-print shadow-[0_8px_24px_rgba(110,69,94,0.28)]"
+        className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-print-edge bg-print text-[30px] shadow-[0_8px_24px_rgba(110,69,94,0.18)]"
         style={{ ['--lb-rot' as string]: '-3deg', animation: 'lb-float 4s ease-in-out infinite' }}
       >
-        Y
+        <span key={`a-${i}`} className="lb-face">
+          {couple[0]}
+        </span>
       </div>
       <div
-        className="relative z-10 -ml-4 flex h-16 w-16 items-center justify-center rounded-full border border-print bg-plum-soft/30 font-display text-[26px] text-plum"
+        className="relative z-10 -ml-4 flex h-16 w-16 items-center justify-center rounded-full border border-print bg-plum-soft/20 text-[30px] shadow-[0_8px_24px_rgba(110,69,94,0.14)]"
         style={{
           ['--lb-rot' as string]: '3deg',
           animation: 'lb-float 4.6s ease-in-out 0.4s infinite',
         }}
       >
-        A
+        <span key={`b-${i}`} className="lb-face">
+          {couple[1]}
+        </span>
       </div>
     </div>
   );

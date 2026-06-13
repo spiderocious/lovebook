@@ -46,6 +46,22 @@ body {
   }
 }
 
+/* Each rotating couple-face fades + scales in (the React key forces a remount). */
+@keyframes lb-face-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.lb-face {
+  display: inline-block;
+  animation: lb-face-in 0.5s cubic-bezier(0.22, 0.8, 0.36, 1) both;
+}
+
 .lb-marquee-track {
   width: max-content;
   animation: lb-marquee var(--lb-marquee-dur, 38s) linear infinite;
