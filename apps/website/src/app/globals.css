@@ -70,6 +70,47 @@ body {
   animation-play-state: paused;
 }
 
+/* Apple-style liquid glass — frosted translucent panel that holds the hero text
+   over the busy silk backdrop. Blur + saturate the backdrop, a bright top inner
+   highlight, a faint hairline ring, and a soft lifted shadow. */
+.lb-glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 254, 251, 0.62),
+    rgba(248, 244, 238, 0.42)
+  );
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 24px 60px rgba(43, 36, 41, 0.14),
+    0 2px 8px rgba(43, 36, 41, 0.06);
+}
+/* No backdrop-filter support → fall back to a more opaque paper fill so text
+   stays readable. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .lb-glass {
+    background: rgba(248, 244, 238, 0.92);
+  }
+}
+
+/* Slow ken-burns drift on the hero image — breathes without looping like video. */
+@keyframes lb-kenburns {
+  0% {
+    transform: scale(1.06) translate3d(-1%, -0.5%, 0);
+  }
+  50% {
+    transform: scale(1.1) translate3d(1%, 0.5%, 0);
+  }
+  100% {
+    transform: scale(1.06) translate3d(-1%, -0.5%, 0);
+  }
+}
+.lb-kenburns {
+  animation: lb-kenburns 26s ease-in-out infinite;
+}
+
 .lb-connector {
   stroke-dasharray: var(--lb-len, 400);
   stroke-dashoffset: var(--lb-len, 400);

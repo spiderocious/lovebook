@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -98,71 +98,55 @@ function Wordmark() {
 /* ─────────────────────────── Hero ─────────────────────────── */
 
 function Hero() {
-  const heroRef = useRef<HTMLElement>(null);
-  const liquidRef = useRef<HTMLDivElement>(null);
-
-  // Mouse reactivity: write the normalized pointer position into CSS vars on the
-  // liquid layer (via a ref, no re-renders). The wave layers read them to drift
-  // toward the cursor — the sea "leans" where you move. rAF-throttled.
-  useEffect(() => {
-    const hero = heroRef.current;
-    const liquid = liquidRef.current;
-    if (!hero || !liquid) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    let frame = 0;
-    let px = 0.5;
-    let py = 0.5;
-    const onMove = (e: PointerEvent) => {
-      const r = hero.getBoundingClientRect();
-      px = (e.clientX - r.left) / r.width;
-      py = (e.clientY - r.top) / r.height;
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        frame = 0;
-        liquid.style.setProperty('--mx', px.toFixed(3));
-        liquid.style.setProperty('--my', py.toFixed(3));
-      });
-    };
-    hero.addEventListener('pointermove', onMove);
-    return () => {
-      hero.removeEventListener('pointermove', onMove);
-      if (frame) cancelAnimationFrame(frame);
-    };
-  }, []);
-
   return (
-    <section
-      ref={heroRef}
-      className="relative mx-auto flex min-h-[88svh] w-full max-w-4xl flex-col items-center justify-center overflow-hidden px-6 pb-10 pt-16 text-center sm:px-8"
-    >
-      <LiquidWaves ref={liquidRef} />
+    <section className="relative flex min-h-[92svh] w-full flex-col items-center justify-center overflow-hidden px-5 pb-14 pt-16 text-center sm:px-8">
+      {/* The Silk Ribbons backdrop (LUMEN, seed 9015), full-bleed, slow ken-burns
+          drift so it breathes without looping like a video. */}
+      <div className="absolute inset-0 -z-10" aria-hidden>
+        <img
+          src="/lumen-silk-9015.webp"
+          alt=""
+          className="lb-kenburns h-full w-full object-cover"
+          fetchPriority="high"
+        />
+        {/* Paper scrims: top + bottom melt the image into the page, and a soft
+            radial keeps the centre calm under the glass panel. */}
+        <div className="absolute inset-0 bg-gradient-to-b from-paper/70 via-paper/10 to-paper" />
+        <div className="absolute inset-0 [background:radial-gradient(60%_55%_at_50%_45%,transparent,rgba(248,244,238,0.35))]" />
+      </div>
+
       <PairMark />
-      <div data-hero className="relative z-10 mt-10 flex flex-col items-center">
-        <h1 className="max-w-3xl font-display text-[clamp(40px,7vw,80px)] font-medium leading-[1.04] tracking-[-0.02em] text-ink">
+
+      {/* Liquid-glass panel — Apple-style frosted glass holds the text for
+          contrast over the busy ribbons. */}
+      <div
+        data-hero
+        className="lb-glass relative z-10 mt-9 flex max-w-2xl flex-col items-center rounded-[28px] px-7 py-10 sm:px-12 sm:py-12"
+      >
+        <h1 className="font-display text-[clamp(40px,7vw,78px)] font-medium leading-[1.04] tracking-[-0.02em] text-ink">
           One feed.
           <br />
           <span className="italic text-plum">Two people.</span>
         </h1>
-        <p className="mt-7 max-w-xl font-serif text-[clamp(17px,2.4vw,21px)] leading-relaxed text-ink-2">
+        <p className="mt-6 max-w-xl font-serif text-[clamp(17px,2.4vw,21px)] leading-relaxed text-ink-2">
           Post a moment, your person sees it. No replies, no metrics, no audience —
           a quiet shared space that belongs to neither WhatsApp nor Instagram.
         </p>
-        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
+        <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
           <Link
             href={APP_URL}
-            className="rounded-pill bg-plum px-8 py-3.5 font-sans text-[15px] font-semibold text-print transition-all hover:bg-plum-deep hover:-translate-y-0.5"
+            className="rounded-pill bg-plum px-8 py-3.5 font-sans text-[15px] font-semibold text-print shadow-[0_8px_22px_rgba(110,69,94,0.30)] transition-all hover:bg-plum-deep hover:-translate-y-0.5"
           >
             Start your space
           </Link>
           <Link
             href={APP_URL}
-            className="font-sans text-[14px] font-medium text-ink-3 underline-offset-4 transition-colors hover:text-plum hover:underline"
+            className="font-sans text-[14px] font-medium text-ink-2 underline-offset-4 transition-colors hover:text-plum hover:underline"
           >
             I have an invite code
           </Link>
         </div>
-        <p className="mt-9 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-4">
+        <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-3">
           Pairs in seconds · Just the two of you
         </p>
       </div>
