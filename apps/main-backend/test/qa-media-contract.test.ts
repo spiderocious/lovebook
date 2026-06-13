@@ -149,11 +149,11 @@ describe('SEAM — contract shapes', () => {
       .set('Authorization', auth(a.accessToken))
       .send({ type: 'text', text: 'hi' })).body.data;
     expect(Object.keys(post).sort()).toEqual(
-      ['authorId', 'createdAt', 'durationMs', 'id', 'mediaKey', 'reaction', 'text', 'type'].sort(),
+      ['authorId', 'createdAt', 'durationMs', 'id', 'mediaKey', 'reactions', 'text', 'type'].sort(),
     );
     expect(post.mediaKey).toBeNull();
     expect(post.durationMs).toBeNull();
-    expect(post.reaction).toBeNull();
+    expect(post.reactions).toEqual([]);
     expect(post.createdAt).toMatch(/^\d{4}-\d{2}-\d{2}T.*Z$/);
   });
 

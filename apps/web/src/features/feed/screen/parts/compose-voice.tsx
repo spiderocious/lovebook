@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AppButton, AppText, VoiceRecorder, VoiceMoment } from '@lovebook/ui';
 import { Show } from 'meemaw';
 
-import { useCompose } from '../../api/use-compose.ts';
+import { errorText, useComposeSend } from './use-compose-send.ts';
 import { useRecorder } from './use-recorder.ts';
 
 const PREVIEW_WAVE = [0.3, 0.6, 0.8, 0.5, 0.9, 0.55, 0.7, 0.4, 0.85, 0.5, 0.65, 0.4];
@@ -12,9 +12,8 @@ const LIVE_WAVE = [0.4, 0.7, 0.5, 0.85, 0.6, 0.45, 0.8];
 // Voice door (PRD §5): hold to record (WhatsApp muscle memory), hard stop at
 // 0:30, release to preview, then Send or Retake.
 export function ComposeVoice({ onDone, partnerName }: { onDone: () => void; partnerName: string }) {
-  const { compose } = useCompose();
   const rec = useRecorder();
-  const [sending, setSending] = useState(false);
+  const { send, sending, error } = useComposeSend(onDone);
 
   // Local playback of the just-recorded blob so the user can hear it before
   // sending. The audio element is rebuilt whenever a new recording lands.
@@ -52,20 +51,14 @@ export function ComposeVoice({ onDone, partnerName }: { onDone: () => void; part
     }
   };
 
-  const send = async () => {
+  const onSend = () => {
     if (!rec.result) return;
-    setSending(true);
-    try {
-      await compose({
-        type: 'voice',
-        blob: rec.result.blob,
-        ext: 'webm',
-        durationMs: rec.result.durationMs,
-      });
-      onDone();
-    } finally {
-      setSending(false);
-    }
+    void send({
+      type: 'voice',
+      blob: rec.result.blob,
+      ext: 'webm',
+      durationMs: rec.result.durationMs,
+    });
   };
 
   const durationLabel = rec.result
@@ -105,17 +98,22 @@ export function ComposeVoice({ onDone, partnerName }: { onDone: () => void; part
           playing={playing}
           onPlayToggle={togglePlay}
         />
+        <Show when={Boolean(error)}>
+          <AppText variant="body-sm" className="text-crit">
+            {errorText(error)}
+          </AppText>
+        </Show>
         <div className="flex justify-between">
-          <AppButton variant="quiet" onClick={rec.reset}>
+          <AppButton variant="quiet" onClick={rec.reset} disabled={sending}>
             Retake
           </AppButton>
-          <AppButton onClick={send} loading={sending}>
-            Send to {partnerName}
+          <AppButton onClick={onSend} loading={sending}>
+            {error ? 'Try again' : `Send to ${partnerName}`}
           </AppButton>
         </div>
       </Show>
 
-      <AppButton variant="quiet" onClick={onDone}>
+      <AppButton variant="quiet" onClick={onDone} disabled={sending}>
         Cancel
       </AppButton>
     </div>

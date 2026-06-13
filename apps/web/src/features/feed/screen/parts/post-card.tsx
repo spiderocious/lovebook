@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import type { Post } from '@lovebook/core';
 import {
+  AppText,
   PolaroidMoment,
   PostcardMoment,
   Timestamp,
@@ -27,14 +28,23 @@ export function PostCard({
   const timestamp = <Timestamp date={post.createdAt} />;
 
   if (post.type === 'text') {
-    return <PostcardMoment text={post.text} timestamp={timestamp} reaction={reaction} />;
+    // PostcardMoment has no author slot, so the name goes above in the "scrawl"
+    // (pencil) voice — the design system's human-author treatment.
+    return (
+      <div className="flex flex-col gap-1.5">
+        <AppText variant="scrawl" className="pl-1 text-ink-3">
+          {authorName}
+        </AppText>
+        <PostcardMoment text={post.text} timestamp={timestamp} reaction={reaction} />
+      </div>
+    );
   }
 
   if (post.type === 'photo') {
     return <PhotoCard post={post} author={authorName} timestamp={timestamp} reaction={reaction} />;
   }
 
-  return <VoiceCard post={post} timestamp={timestamp} reaction={reaction} />;
+  return <VoiceCard post={post} author={authorName} timestamp={timestamp} reaction={reaction} />;
 }
 
 function PhotoCard({
@@ -62,10 +72,12 @@ function PhotoCard({
 
 function VoiceCard({
   post,
+  author,
   timestamp,
   reaction,
 }: {
   post: Post;
+  author: string;
   timestamp: React.ReactNode;
   reaction: React.ReactNode;
 }) {
@@ -96,6 +108,7 @@ function VoiceCard({
     <VoiceMoment
       waveform={PLACEHOLDER_WAVE}
       duration={durationLabel}
+      author={author}
       timestamp={timestamp}
       reaction={reaction}
       playing={playing}

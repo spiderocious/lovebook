@@ -3,16 +3,15 @@ import { useEffect, useRef, useState } from 'react';
 import { AppButton, AppText } from '@lovebook/ui';
 import { Show } from 'meemaw';
 
-import { useCompose } from '../../api/use-compose.ts';
+import { errorText, useComposeSend } from './use-compose-send.ts';
 
 // Photo door (PRD §5): the device camera opens, you take a photo, preview it,
 // then Send or Retake. No filters, no crop, no caption — the photo is the post.
 export function ComposePhoto({ onDone, partnerName }: { onDone: () => void; partnerName: string }) {
-  const { compose } = useCompose();
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-  const [sending, setSending] = useState(false);
+  const { send, sending, error } = useComposeSend(onDone);
 
   // Open the picker/camera once when the door opens. The ref guard makes this
   // StrictMode-proof — without it the dev double-mount fires .click() twice and
@@ -46,15 +45,9 @@ export function ComposePhoto({ onDone, partnerName }: { onDone: () => void; part
     return f.type === 'image/png' ? 'png' : 'jpg';
   };
 
-  const send = async () => {
+  const onSend = () => {
     if (!file) return;
-    setSending(true);
-    try {
-      await compose({ type: 'photo', blob: file, ext: extOf(file) });
-      onDone();
-    } finally {
-      setSending(false);
-    }
+    void send({ type: 'photo', blob: file, ext: extOf(file) });
   };
 
   return (
@@ -77,12 +70,21 @@ export function ComposePhoto({ onDone, partnerName }: { onDone: () => void; part
           alt="Your photo, ready to send"
           className="aspect-[3/4] w-full rounded-[10px] object-cover"
         />
+        <Show when={Boolean(error)}>
+          <AppText variant="body-sm" className="text-crit">
+            {errorText(error)}
+          </AppText>
+        </Show>
         <div className="flex justify-between">
-          <AppButton variant="quiet" onClick={() => inputRef.current?.click()}>
+          <AppButton
+            variant="quiet"
+            onClick={() => inputRef.current?.click()}
+            disabled={sending}
+          >
             Retake
           </AppButton>
-          <AppButton onClick={send} loading={sending}>
-            Send to {partnerName}
+          <AppButton onClick={onSend} loading={sending}>
+            {error ? 'Try again' : `Send to ${partnerName}`}
           </AppButton>
         </div>
       </Show>
