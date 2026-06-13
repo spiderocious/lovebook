@@ -4,7 +4,68 @@
 
 html,
 body {
-  background: #f8fafc;
-  color: #1f2024;
+  background: #f8f4ee; /* paper */
+  color: #2b2429; /* ink */
   font-family: theme('fontFamily.sans');
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Editorial motion — all ambient, all cheap (transform/opacity only), all
+   silenced under prefers-reduced-motion below. */
+
+@keyframes lb-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--lb-rot, 0deg));
+  }
+  50% {
+    transform: translateY(-12px) rotate(var(--lb-rot, 0deg));
+  }
+}
+
+@keyframes lb-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes lb-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes lb-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.lb-marquee-track {
+  width: max-content;
+  animation: lb-marquee var(--lb-marquee-dur, 38s) linear infinite;
+}
+.lb-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.lb-connector {
+  stroke-dasharray: var(--lb-len, 400);
+  stroke-dashoffset: var(--lb-len, 400);
+  animation: lb-draw 2.4s cubic-bezier(0.22, 0.8, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
