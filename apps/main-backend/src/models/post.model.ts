@@ -1,6 +1,8 @@
-import { Schema, model, models, type InferSchemaType, type Model, type Types } from 'mongoose';
+import mongoose, { type InferSchemaType, type Model, type Types } from 'mongoose';
 
 import { POST_TYPES } from '@lovebook/core';
+
+const { Schema, model, models } = mongoose;
 
 const postSchema = new Schema(
   {

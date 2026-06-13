@@ -1,4 +1,8 @@
-import { Schema, model, models, type InferSchemaType, type Model, type Types } from 'mongoose';
+import mongoose, { type InferSchemaType, type Model, type Types } from 'mongoose';
+
+// mongoose is CommonJS — under NodeNext ESM only the default export is reliable;
+// named value imports (Schema/model/models) fail at runtime. Destructure them.
+const { Schema, model, models } = mongoose;
 
 const quietHoursSchema = new Schema(
   {

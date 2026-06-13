@@ -4,15 +4,28 @@ import express from 'express';
 import helmet from 'helmet';
 
 import { register as registerAuth } from '@features/auth/index.js';
-import { register as registerExample } from '@features/example/index.js';
+import { register as registerFeed } from '@features/feed/index.js';
 import { register as registerHealth } from '@features/health/index.js';
+import { register as registerMe } from '@features/me/index.js';
+import { register as registerPair } from '@features/pair/index.js';
+import { register as registerPush } from '@features/push/index.js';
 import { errorHandler } from '@middlewares/errorHandler.middleware.js';
 import { requestIdMiddleware } from '@middlewares/requestId.middleware.js';
 import { requestLogMiddleware } from '@middlewares/requestLog.middleware.js';
 
 import { env } from './env.js';
 
-const features = [registerHealth, registerAuth, registerExample];
+// Registration order matters: specific paths before broad ones. None of these
+// prefixes overlap, but we keep a deliberate order (health first for probes,
+// auth before authed features) for clarity.
+const features = [
+  registerHealth,
+  registerAuth,
+  registerMe,
+  registerPair,
+  registerFeed,
+  registerPush,
+];
 
 export const buildApp = (): express.Express => {
   const app = express();

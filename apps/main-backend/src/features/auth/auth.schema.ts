@@ -1,14 +1,7 @@
-import { z } from 'zod';
-
-export const LoginBody = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-});
-export type LoginBody = z.infer<typeof LoginBody>;
-
-export const RegisterBody = z.object({
-  email: z.string().email(),
-  name: z.string().min(1),
-  password: z.string().min(8),
-});
-export type RegisterBody = z.infer<typeof RegisterBody>;
+// Request schemas live in @lovebook/core (the single Zod source feeding both
+// sides). Re-exported here so feature code imports from one local place.
+export {
+  registerBodySchema as RegisterBody,
+  loginBodySchema as LoginBody,
+  refreshBodySchema as RefreshBody,
+} from '@lovebook/core';

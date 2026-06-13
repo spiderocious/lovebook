@@ -22,10 +22,22 @@ export const timeOfDaySchema = z
   .string()
   .regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Expected HH:mm');
 
+/** A valid IANA timezone id — probed via Intl so a bad zone can't be stored. */
+const isValidTimeZone = (tz: string): boolean => {
+  try {
+    new Intl.DateTimeFormat('en-US', { timeZone: tz });
+    return true;
+  } catch {
+    return false;
+  }
+};
+
 export const quietHoursSchema = z.object({
   start: timeOfDaySchema,
   end: timeOfDaySchema,
-  tz: z.string().min(1), // IANA tz id, validated against Intl on the server
+  // IANA tz id, validated against Intl so push windows are never computed in the
+  // wrong zone (a bad zone would otherwise be silently swallowed → UTC fallback).
+  tz: z.string().min(1).refine(isValidTimeZone, { message: 'Invalid IANA timezone' }),
 });
 
 // ── Auth ─────────────────────────────────────────────────────────────────────

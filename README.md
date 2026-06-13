@@ -32,7 +32,7 @@ cp apps/admin-web/.env.example    apps/admin-web/.env
 cp apps/website/.env.example      apps/website/.env
 
 # In separate terminals
-pnpm -F @lovebook/main-backend dev    # http://localhost:8081
+pnpm -F @lovebook/main-backend dev    # http://localhost:9092
 pnpm -F @lovebook/web dev             # http://localhost:5173
 ```
 
