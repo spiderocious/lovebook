@@ -10,7 +10,6 @@ import {
 
 import { Break, ComponentRow, Section } from "../preview-canvas.tsx";
 
-// Spec: dockito/design-system/projects/lovebook/preview/21-compose.html
 const LIVE_WAVE = [
   0.35, 0.6, 0.8, 0.45, 0.9, 0.55, 0.7, 0.4, 0.85, 0.5, 0.65, 0.38,
 ];

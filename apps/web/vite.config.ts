@@ -3,11 +3,46 @@ import path from 'node:path';
 
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      // Custom service worker: we extend Workbox precaching with push handling
+      // and an offline outbox replay (injectManifest gives us the SW source).
+      strategies: 'injectManifest',
+      srcDir: 'src/pwa',
+      filename: 'sw.ts',
+      injectManifest: {
+        globPatterns: ['**/*.{js,css,html,woff,woff2,svg,png,ico}'],
+      },
+      manifest: {
+        name: 'lovebook',
+        short_name: 'lovebook',
+        description: 'One feed, two people. Post a moment, your person sees it.',
+        start_url: '/',
+        scope: '/',
+        display: 'standalone',
+        background_color: '#f8f4ee',
+        theme_color: '#6e455e',
+        icons: [
+          { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+          {
+            src: '/icons/icon-maskable-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+      },
+      devOptions: { enabled: false },
+    }),
+  ],
   resolve: {
     alias: [
       { find: '@app', replacement: path.resolve(__dirname, 'src') },
