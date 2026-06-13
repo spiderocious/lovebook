@@ -40,7 +40,10 @@ export default defineConfig({
           },
         ],
       },
-      devOptions: { enabled: false },
+      // Run the service worker in `vite dev` too, so push + offline are testable
+      // locally (localhost is a secure context, so Web Push works). `type:'module'`
+      // is required for an injectManifest SW in dev.
+      devOptions: { enabled: true, type: 'module', navigateFallback: 'index.html' },
     }),
   ],
   resolve: {

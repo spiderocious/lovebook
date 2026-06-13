@@ -340,6 +340,22 @@ describe('PAIR — extra edges', () => {
     expect(i1.body.data.pairId).toBe(i2.body.data.pairId);
   });
 
+  it('SM-RACE-03: two concurrent invites from one user → one live invite (BUG-02 fixed)', async () => {
+    // The partial-unique index on { createdBy, status:'live' } makes this a
+    // DB-level guard, so the race is now deterministic even on standalone
+    // in-memory mongo (no replica set needed) — CI covers it.
+    const a = await makeUser('A');
+    const [i1, i2] = await Promise.all([
+      api().post(`${BASE}/pair/invite`).set('Authorization', auth(a.accessToken)),
+      api().post(`${BASE}/pair/invite`).set('Authorization', auth(a.accessToken)),
+    ]);
+    expect(i1.status).toBe(201);
+    expect(i2.status).toBe(201);
+    // Both callers get the SAME single live invite — no duplicate pending pair.
+    expect(i1.body.data.code).toBe(i2.body.data.code);
+    expect(i1.body.data.pairId).toBe(i2.body.data.pairId);
+  });
+
   it('PAIR-06: GET /pair when unpaired → 200 data:null', async () => {
     const a = await makeUser('A');
     const res = await api().get(`${BASE}/pair`).set('Authorization', auth(a.accessToken));

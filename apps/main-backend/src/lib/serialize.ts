@@ -48,7 +48,7 @@ export function toReaction(doc: ReactionDoc): Reaction {
   };
 }
 
-export function toPost(doc: PostDoc, reaction: ReactionDoc | null): Post {
+export function toPost(doc: PostDoc, reactions: ReactionDoc[] = []): Post {
   return {
     id: id(doc._id),
     authorId: id(doc.authorId as unknown as Types.ObjectId),
@@ -56,7 +56,7 @@ export function toPost(doc: PostDoc, reaction: ReactionDoc | null): Post {
     text: doc.text ?? null,
     mediaKey: doc.mediaKey ?? null,
     durationMs: doc.durationMs ?? null,
-    reaction: reaction ? toReaction(reaction) : null,
+    reactions: reactions.map(toReaction),
     createdAt: iso(doc.createdAt),
   };
 }

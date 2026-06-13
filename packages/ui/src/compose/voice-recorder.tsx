@@ -40,16 +40,29 @@ export function VoiceRecorder({
 }: VoiceRecorderProps) {
   return (
     <div className={cn('px-2 py-2 text-center', className)}>
-      <button
-        type="button"
-        aria-label="Hold to record"
-        onPointerDown={onHoldStart}
-        onPointerUp={onHoldEnd}
-        onPointerLeave={onHoldEnd}
-        className="mx-auto mb-[18px] flex h-[88px] w-[88px] items-center justify-center rounded-full bg-plum text-print shadow-[0_0_0_12px_var(--plum-wash),0_0_0_24px_var(--plum-wash)]"
-      >
-        <Mic size={32} strokeWidth={1.7} />
-      </button>
+      <div className="relative mx-auto mb-[18px] flex h-[88px] w-[88px] items-center justify-center">
+        {/* Radial pulse rings — only while recording. Two staggered rings bounce
+            outward off the mic so the user knows capture is live. */}
+        {recording ? (
+          <>
+            <span className="pointer-events-none absolute inset-0 rounded-full bg-plum/30 motion-safe:animate-[recordPulse_1.4s_ease-out_infinite]" />
+            <span className="pointer-events-none absolute inset-0 rounded-full bg-plum/20 motion-safe:animate-[recordPulse_1.4s_ease-out_0.7s_infinite]" />
+          </>
+        ) : null}
+        <button
+          type="button"
+          aria-label="Hold to record"
+          onPointerDown={onHoldStart}
+          onPointerUp={onHoldEnd}
+          onPointerLeave={onHoldEnd}
+          className={cn(
+            'relative flex h-[88px] w-[88px] items-center justify-center rounded-full bg-plum text-print shadow-[0_0_0_12px_var(--plum-wash),0_0_0_24px_var(--plum-wash)] transition-transform',
+            recording && 'motion-safe:animate-[recordBreathe_1.4s_ease-in-out_infinite]',
+          )}
+        >
+          <Mic size={32} strokeWidth={1.7} />
+        </button>
+      </div>
       <div className="mx-auto my-3.5 flex h-[30px] max-w-[220px] items-center justify-center gap-[3px]">
         {waveform.map((amp, i) => (
           <span

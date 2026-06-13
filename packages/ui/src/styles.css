@@ -153,6 +153,29 @@ body {
   }
 }
 
+/* Voice recorder: rings bounce outward off the mic while recording. */
+@keyframes recordPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* The mic itself breathes gently in time with the rings. */
+@keyframes recordBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

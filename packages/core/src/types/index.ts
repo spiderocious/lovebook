@@ -51,7 +51,7 @@ export interface Post {
   text: string | null;
   mediaKey: string | null; // present for photo/voice; resolve via the media endpoint
   durationMs: number | null; // present for voice
-  reaction: Reaction | null; // the single reaction, if any
+  reactions: Reaction[]; // one per member (max 2 in a pair); [] if none yet
   createdAt: string;
 }
 

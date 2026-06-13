@@ -4,14 +4,18 @@ import { asyncHandler } from '@lib/http/asyncHandler.js';
 import { ResponseUtil } from '@lib/response.js';
 import { unwrap } from '@lib/result.js';
 import { currentUserId, requireAuth } from '@middlewares/auth.middleware.js';
+import { authRateLimit } from '@middlewares/rateLimit.middleware.js';
 
 import { authService } from './auth.service.js';
 import { LoginBody, RefreshBody, RegisterBody } from './auth.schema.js';
 
 const router: IRouter = Router();
 
+// Credential endpoints get a stricter per-IP limit on top of the global one —
+// blunts brute-force / credential-stuffing (Phase-1 residual risk).
 router.post(
   '/register',
+  authRateLimit,
   asyncHandler(async (req, res) => {
     const body = RegisterBody.parse(req.body);
     const result = unwrap(await authService.register(body));
@@ -21,6 +25,7 @@ router.post(
 
 router.post(
   '/login',
+  authRateLimit,
   asyncHandler(async (req, res) => {
     const body = LoginBody.parse(req.body);
     const result = unwrap(await authService.login(body));

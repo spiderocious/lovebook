@@ -27,7 +27,7 @@ export const postService = {
       limit,
     });
     const reactions = await postRepo.reactionsByPostIds(posts.map((p) => p._id));
-    const out: Post[] = posts.map((p) => toPost(p, reactions.get(p._id.toString()) ?? null));
+    const out: Post[] = posts.map((p) => toPost(p, reactions.get(p._id.toString()) ?? []));
     return Ok({ posts: out, nextCursor, hasMore });
   },
 
@@ -43,7 +43,7 @@ export const postService = {
       logger.warn({ err }, 'post push notification failed');
     });
 
-    return Ok(toPost(doc, null));
+    return Ok(toPost(doc, []));
   },
 
   async notifyOtherMember(pairId: string, authorId: string): Promise<void> {

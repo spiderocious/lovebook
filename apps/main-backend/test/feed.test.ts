@@ -29,7 +29,7 @@ describe('feed + posts', () => {
       text: 'Sky was unreasonable.',
       mediaKey: null,
       durationMs: null,
-      reaction: null,
+      reactions: [],
     });
 
     const feedB = await api().get('/api/v1/feed').set('Authorization', auth(b.accessToken));
@@ -132,7 +132,9 @@ describe('reactions', () => {
     expect(set2.status).toBe(200);
 
     const feed = await api().get('/api/v1/feed').set('Authorization', auth(a.accessToken));
-    expect(feed.body.data.posts[0].reaction.emoji).toBe('🔥');
+    // Re-tap replaced, did not duplicate: exactly one reaction, now 🔥.
+    expect(feed.body.data.posts[0].reactions).toHaveLength(1);
+    expect(feed.body.data.posts[0].reactions[0].emoji).toBe('🔥');
 
     const clear = await api()
       .delete(`/api/v1/posts/${postId}/reaction`)
@@ -140,7 +142,7 @@ describe('reactions', () => {
     expect(clear.status).toBe(204);
 
     const feed2 = await api().get('/api/v1/feed').set('Authorization', auth(a.accessToken));
-    expect(feed2.body.data.posts[0].reaction).toBeNull();
+    expect(feed2.body.data.posts[0].reactions).toEqual([]);
   });
 
   it('rejects an emoji outside the allowed set', async () => {

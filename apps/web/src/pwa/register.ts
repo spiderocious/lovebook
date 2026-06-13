@@ -3,8 +3,8 @@
 // happy without the virtual module present and gives us one swap point).
 
 export function registerServiceWorker(): void {
-  if (import.meta.env.DEV) return;
-  // Dynamic import so the virtual module is only pulled in a real build.
+  // Registers in dev too (devOptions.enabled in vite.config) so push + offline
+  // are testable on localhost. The virtual module is provided by vite-plugin-pwa.
   void import('virtual:pwa-register')
     .then(({ registerSW }) => {
       registerSW({ immediate: true });

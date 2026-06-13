@@ -55,11 +55,18 @@ export const postRepo = {
     };
   },
 
-  /** Reactions for a set of posts, keyed by postId (for feed serialization). */
-  async reactionsByPostIds(postIds: mongoose.Types.ObjectId[]): Promise<Map<string, ReactionDoc>> {
+  /** All reactions for a set of posts, grouped by postId (max one per member). */
+  async reactionsByPostIds(
+    postIds: mongoose.Types.ObjectId[],
+  ): Promise<Map<string, ReactionDoc[]>> {
     const docs = await ReactionModel.find({ postId: { $in: postIds } }).exec();
-    const map = new Map<string, ReactionDoc>();
-    for (const doc of docs) map.set(doc.postId.toString(), doc);
+    const map = new Map<string, ReactionDoc[]>();
+    for (const doc of docs) {
+      const key = doc.postId.toString();
+      const list = map.get(key) ?? [];
+      list.push(doc);
+      map.set(key, list);
+    }
     return map;
   },
 

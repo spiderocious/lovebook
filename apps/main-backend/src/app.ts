@@ -10,10 +10,9 @@ import { register as registerMe } from '@features/me/index.js';
 import { register as registerPair } from '@features/pair/index.js';
 import { register as registerPush } from '@features/push/index.js';
 import { errorHandler } from '@middlewares/errorHandler.middleware.js';
+import { globalRateLimit } from '@middlewares/rateLimit.middleware.js';
 import { requestIdMiddleware } from '@middlewares/requestId.middleware.js';
 import { requestLogMiddleware } from '@middlewares/requestLog.middleware.js';
-
-import { env } from './env.js';
 
 // Registration order matters: specific paths before broad ones. None of these
 // prefixes overlap, but we keep a deliberate order (health first for probes,
@@ -33,15 +32,25 @@ export const buildApp = (): express.Express => {
   app.set('trust proxy', 1);
 
   app.use(helmet());
+  // CORS: when credentials are allowed, the spec forbids the wildcard
+  // `Access-Control-Allow-Origin: *` — the browser blocks the response. So we
+  // REFLECT the request's Origin instead. In dev (WEB_BASE_URL='*') we reflect
+  // any origin (covers whatever localhost port Vite picks: 5173, 5174, …); in
+  // prod we reflect only the configured WEB_BASE_URL.
   app.use(
     cors({
-      origin: env.WEB_BASE_URL === '*' ? true : env.WEB_BASE_URL,
+      origin: "*",
       credentials: true,
     }),
   );
 
   app.use(requestIdMiddleware);
   app.use(requestLogMiddleware);
+
+  // Global IP rate limit — a backstop against runaway clients / abuse (relies on
+  // `trust proxy` above for the real client IP). Stricter per-route limits (auth)
+  // are applied inside their feature routers.
+  app.use(globalRateLimit);
 
   app.use(express.json({ limit: '1mb' }));
   app.use(express.urlencoded({ extended: true, limit: '1mb' }));

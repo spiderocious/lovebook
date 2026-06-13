@@ -20,6 +20,10 @@ Two RESIDUAL RISKS carried to Phase 2 (not bugs): no rate-limiting on /auth/logi
 
 Two known runtime gotchas to remember: (1) mongoose is CJS — under NodeNext ESM the model files must `import mongoose from 'mongoose'` then destructure `{Schema, model, models}`, NOT named-import them (crashes the dev server though vitest masks it). (2) `apps/website` build is broken by a PRE-EXISTING template defect (Next server component importing the client-only @lovebook/ui barrel) — NOT my code, website out of v1 scope.
 
-Next up: Phase 2 (frontend auth).
+**Phases 2–7 are DONE (2026-06-13).** The whole frontend PWA is built in apps/web on the Phase-1 API: auth (landing/login/register + AuthProvider + token wiring + 4 route guards), pairing (invite/claim/leave + deep-link receiver flow + past pairs), feed (infinite cursor scroll, optimistic text posts, offline IndexedDB outbox that flushes on reconnect), photo (camera capture) + voice (MediaRecorder, 30s cap) posts through the media upload→gate flow, reactions (tap=❤️ / long-press picker using CORE REACTIONS set, optimistic), and settings (name, quiet hours w/ resolved IANA tz, push opt-in via SW pushManager, leave pair, delete account). All screens lazy-loaded; meemaw Show/Repeat/Loadable everywhere (no &&/.map in JSX); react-query hooks hit EP.*; UI from @lovebook/ui. Frontend QA handoff at docs/qas/frontend-qa-handoff.md. typecheck 7/7 + lint + web build + backend 90/90 tests all green.
+
+Frontend gotcha learned: this eslint config has NO react-hooks plugin — don't write `// eslint-disable react-hooks/exhaustive-deps` (it errors as unknown-rule). Also apps/web must NOT import `ky` directly (not its dep; ky lives in @lovebook/api) — use a local options type in shared/api/unwrap.ts.
+
+Not yet built (deferred, noted in handoff): avatar-upload UI, real voice waveform peaks. Residual backend risks still open: rate-limiting on /auth/login, token revocation on logout.
 
 See [[lovebook-product]] for the product + stack summary.
