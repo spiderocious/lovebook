@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#f8f4ee" rx="48"/>
+
+  <!-- Open book — two pages -->
+  <!-- Left page, slight left lean -->
+  <rect x="56" y="112" width="186" height="252" rx="8"
+        fill="#fffefb" stroke="#d1c4ca" stroke-width="3"
+        transform="rotate(-4 149 238)"/>
+  <!-- Right page, slight right lean -->
+  <rect x="270" y="112" width="186" height="252" rx="8"
+        fill="#fffefb" stroke="#d1c4ca" stroke-width="3"
+        transform="rotate(4 363 238)"/>
+
+  <!-- Spine shadow -->
+  <rect x="247" y="108" width="18" height="260" rx="4" fill="#e8e0e2" opacity="0.7"/>
+
+  <!-- Left page ruled lines -->
+  <g transform="rotate(-4 149 238)" opacity="0.45">
+    <line x1="76" y1="172" x2="224" y2="172" stroke="#b3a8b0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="76" y1="200" x2="224" y2="200" stroke="#b3a8b0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="76" y1="228" x2="190" y2="228" stroke="#b3a8b0" stroke-width="3" stroke-linecap="round"/>
+    <line x1="76" y1="256" x2="210" y2="256" stroke="#b3a8b0" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Right page: tiny polaroid frame -->
+  <g transform="rotate(4 363 238)">
+    <rect x="290" y="154" width="144" height="132" rx="4"
+          fill="#f0eae1" stroke="#d1c4ca" stroke-width="2"/>
+    <rect x="295" y="158" width="134" height="108" rx="3"
+          fill="#d8cdd4"/>
+    <!-- tiny pencil line below -->
+    <line x1="290" y1="302" x2="434" y2="302" stroke="#b3a8b0" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Dusty plum heart, centred at spine top -->
+  <path d="M 256 96 C 256 80 240 72 230 82 C 220 92 220 108 256 128 C 292 108 292 92 282 82 C 272 72 256 80 256 96 Z"
+        fill="#6e455e"/>
+
+  <!-- Bottom reading line (optional decorative) -->
+  <line x1="80" y1="400" x2="432" y2="400" stroke="#e8e0e2" stroke-width="3" stroke-linecap="round"/>
+</svg>
